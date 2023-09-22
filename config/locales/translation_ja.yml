@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      book: 書籍
+
+    attributes:
+      book:
+        author: 著者
+        memo: メモ
+        picture: 表紙
+        title: "タイトル"
+  books:
+    #View
+    index:
+      books: 書籍一覧
+      show: 詳細
+      new: 新規作成
+      title: タイトル
+    show:
+      edit: 編集
+      back: 戻る
+      destroy: 削除
+    edit:
+      show: 詳細
+      back: 戻る
+    new:
+      back: 戻る
+
+    #Ccontroller
+    create:
+      created: 書籍が1件登録されました。
+    update:
+      updated: 書籍の内容が更新されました。
+    destroy:
+      destroyed: 書籍を1件削除しました。
