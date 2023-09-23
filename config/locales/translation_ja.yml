@@ -12,11 +12,11 @@ ja:
 
   views:
     common:
-      show: 詳細
-      edit: 編集
-      delete: 削除
+      show: この本の詳細
+      edit: 内容を編集する
+      delete: この本を削除する
       new: 新規作成
-      back: 戻る
+      back: 本の一覧に戻る
       error: エラー
       prohibited: 要求は取消されました。
 
