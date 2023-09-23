@@ -6,9 +6,9 @@
   <% @books.each do |book| %>
     <%= render book %>
     <p>
-      <%= link_to t('.show'), book %>
+      <%= link_to t('views.common.show'), book %>
     </p>
   <% end %>
 </div>
 
-<%= link_to t('.new'), new_book_path %>
+<%= link_to t('views.common.new'), new_book_path %>

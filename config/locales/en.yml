@@ -32,7 +32,7 @@
 en:
   activerecord:
     models:
-      book: book
+      book: "book"
 
     attributes:
       book:
@@ -40,23 +40,25 @@ en:
         memo: "memo"
         picture: "picture"
         title: "title"
+
+  views:
+    common:
+      show: "Show this book"
+      edit: "Edit this book"
+      delete: "Destroy this book"
+      new: "New book"
+      back: "Back to books"
+      error: "error"
+      prohibited: "prohibited this book from being saved:"
+
   books:
-    #View
     index:
       books: "Books"
-      show: "Show this book"
-      new: "New book"
-    show:
-      edit: "Edit this book"
-      back: "Back to books"
-      destroy: "Destroy this book"
     edit:
-      show: "Show this book"
-      back: "Back to books"
+      editing_book: "Editing book"
     new:
-      back: "Back to books"
+      new_book: "New book"
 
-    #Ccontroller
     create:
       createed: "Book was successfully created."
     update:
