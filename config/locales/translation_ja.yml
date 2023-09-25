@@ -12,11 +12,11 @@ ja:
 
   views:
     common:
-      show: この本の詳細
+      show: この%{name}の詳細
       edit: 内容を編集する
-      delete: この本を削除する
-      new: 新規作成
-      back: 本の一覧に戻る
+      delete: この%{name}を削除する
+      new: 新規作成する
+      back: "%{page_name}に戻る"
       error: エラー
       prohibited: 要求は取消されました。
 
@@ -24,13 +24,13 @@ ja:
     index:
       books: 書籍一覧
     edit:
-      editing_book: 内容を編集する
+      editing_book: 編集フォーム
     new:
-      new_book: 新規作成する
+      new_book: 新規作成フォーム
 
     create:
-      created: 書籍を1件登録しました。
+      created: "%{name}を1件登録しました"
     update:
-      updated: 書籍の内容を更新しました。
+      updated: "%{name}の内容を更新しました"
     destroy:
-      destroyed: 書籍を1件削除しました。
+      destroyed: "%{name}を1件削除しました"

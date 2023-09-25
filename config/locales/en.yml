@@ -43,13 +43,13 @@ en:
 
   views:
     common:
-      show: "Show this book"
-      edit: "Edit this book"
-      delete: "Destroy this book"
-      new: "New book"
-      back: "Back to books"
+      show: "Show this %{name}"
+      edit: "Edit this %{name}"
+      delete: "Destroy this %{name}"
+      new: "New %{name}"
+      back: "Back to %{page_name}"
       error: "error"
-      prohibited: "prohibited this book from being saved:"
+      prohibited: "prohibited this #{name} from being saved:"
 
   books:
     index:
