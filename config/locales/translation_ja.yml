@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    models:
+      book: 書籍
+
+    attributes:
+      book:
+        author: 著者
+        memo: メモ
+        picture: 表紙
+        title: タイトル
+
+  views:
+    common:
+      show: この%{name}の詳細
+      edit: 内容を編集する
+      delete: この%{name}を削除する
+      new: 新規作成する
+      back: "%{page_name}に戻る"
+      error: エラー
+      prohibited: 要求は取消されました。
+
+  books:
+    index:
+      books: 書籍一覧
+    edit:
+      editing_book: 編集フォーム
+    new:
+      new_book: 新規作成フォーム
+
+    create:
+      created: "%{name}を1件登録しました"
+    update:
+      updated: "%{name}の内容を更新しました"
+    destroy:
+      destroyed: "%{name}を1件削除しました"

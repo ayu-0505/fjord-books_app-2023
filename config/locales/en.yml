@@ -30,4 +30,38 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      book: "book"
+
+    attributes:
+      book:
+        author: "author"
+        memo: "memo"
+        picture: "picture"
+        title: "title"
+
+  views:
+    common:
+      show: "Show this %{name}"
+      edit: "Edit this %{name}"
+      delete: "Destroy this %{name}"
+      new: "New %{name}"
+      back: "Back to %{page_name}"
+      error: "error"
+      prohibited: "prohibited this #{name} from being saved:"
+
+  books:
+    index:
+      books: "Books"
+    edit:
+      editing_book: "Editing book"
+    new:
+      new_book: "New book"
+
+    create:
+      createed: "Book was successfully created."
+    update:
+      updated: "Book was successfully updated."
+    destroy:
+      destroyed: "Book was successfully destroyed."
