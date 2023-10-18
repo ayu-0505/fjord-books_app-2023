@@ -1,0 +1,7 @@
+<h1>ユーザー一覧</h1>
+<% @users.each do |user| %>
+    <div>
+      <%= render user %>
+      <%= link_to 'このユーザーを表示', user %>
+    </div>
+  <% end %>

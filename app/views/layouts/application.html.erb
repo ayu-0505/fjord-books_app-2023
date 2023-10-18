@@ -12,16 +12,17 @@
 
   <body class="<%= params[:action] %>">
 <header>
-<div>
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>.
-    <%= link_to 'プロフィール編集', edit_user_registration_path %> |
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to '新規登録', new_user_registration_path %> |
-    <%= link_to 'ログイン', new_user_session_path %>
-  <% end %>
-</div>
+  <div>
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to 'プロフィール編集', edit_user_registration_path %> |
+      <%= link_to 'ユーザー一覧', users_path %> |
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to '新規登録', new_user_registration_path %> |
+      <%= link_to 'ログイン', new_user_session_path %>
+    <% end %>
+  </div>
 </header>
 
  <% if notice %>
