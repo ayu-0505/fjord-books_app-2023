@@ -200,6 +200,11 @@ ja:
       previous: '‹ 前'
       next: '次 ›'
       truncate: '…'
+  layouts:
+    application:
+      sign_in_as: "%{name} としてログイン中"
+      sign_out: "ログアウト"
+      list: "%{name}一覧"
   controllers:
     common:
       notice_create: "%{name}が作成されました。"

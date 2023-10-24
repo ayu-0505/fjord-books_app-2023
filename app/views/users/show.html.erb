@@ -1,14 +1,8 @@
-<h1>ユーザーの詳細</h1>
 <div>
   <%= render @user %>
 </div>
 
-<p>
-  <strong>自己紹介文:</strong>
-  <%= @user.self_introduction %>
-</p>
-
 <% if current_user == @user %>
-  <%= link_to '編集', edit_user_registration_path %> |
+  <%= link_to t('devise.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path %> |
 <% end %>
-<%= link_to '戻る', users_path %>
+<%= link_to t('views.common.back', name: User.model_name.human), users_path %>

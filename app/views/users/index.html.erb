@@ -1,7 +1,9 @@
-<h1>ユーザー一覧</h1>
+<h1><%= t('layouts.application.list', name: User.model_name.human)%></h1>
 <% @users.each do |user| %>
-    <div>
-      <%= render user %>
-      <%= link_to 'このユーザーを表示', user %>
-    </div>
-  <% end %>
+  <div>
+    <%= render user %>
+    <%= link_to t('views.common.show', name: User.model_name.human), user %>
+  </div>
+<% end %>
+<%= page_entries_info @users %>
+<%= paginate @users %>
