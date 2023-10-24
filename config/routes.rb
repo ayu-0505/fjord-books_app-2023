@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root to: "books#index"
-  # get '/users/sign_out', 'devise/sessions#destroy'
   devise_for :users
   resources :books
   resources :users
