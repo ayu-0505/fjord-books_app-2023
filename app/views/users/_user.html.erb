@@ -1,22 +1,26 @@
 <div>
   <p>
-    <strong>名前:</strong>
+    <strong><%= User.human_attribute_name(:name) %>:</strong>
     <%= user.name %>
   </p>
 
   <p>
-    <strong>Eメール:</strong>
+    <strong><%= User.human_attribute_name(:email) %>:</strong>
     <%= user.email %>
   </p>
 
   <p>
-    <strong>郵便番号:</strong>
+    <strong><%= User.human_attribute_name(:post_number) %>:</strong>
     <%= user.post_number %>
   </p>
 
   <p>
-    <strong>住所:</strong>
+    <strong><%= User.human_attribute_name(:address) %>:</strong>
     <%= user.address %>
   </p>
 
+  <p>
+    <strong><%= User.human_attribute_name(:self_introduction) %>:</strong>
+    <%= user.self_introduction %>
+  </p>
 </div>

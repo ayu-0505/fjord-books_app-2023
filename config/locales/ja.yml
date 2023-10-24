@@ -208,6 +208,11 @@ ja:
       title_edit: "%{name}の編集"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
+  layouts:
+    application:
+      sign_in_as: "%{name} としてログイン中"
+      sign_out: "ログアウト"
+      list: "%{name}一覧"
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
