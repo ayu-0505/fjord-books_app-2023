@@ -14,7 +14,7 @@
     <header>
       <div>
         <% if user_signed_in? %>
-          <strong><%= t('layouts.application.sign_in_as', name: (current_user.name || current_user.email)) %></strong>
+          <strong><%= t('layouts.application.sign_in_as', name: current_user.email) %></strong>
           <%= link_to t('views.common.title_index', name: i18n_pluralize(Book.model_name.human)), root_path %> |
           <%= link_to t('devise.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path %> |
           <%= link_to t('layouts.application.list', name: User.model_name.human), users_path %> |
