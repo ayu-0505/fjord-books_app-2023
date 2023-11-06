@@ -13,6 +13,6 @@ ja:
       user:
         name: 名前
         email: Eメール
-        post_number: 郵便番号
+        post_code: 郵便番号
         address: 住所
         self_introduction: 自己紹介
