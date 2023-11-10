@@ -1,0 +1,8 @@
+<div>
+  <%= render @user %>
+</div>
+
+<% if current_user == @user %>
+  <%= link_to t('devise.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path %> |
+<% end %>
+<%= link_to t('views.common.back', name: User.model_name.human), users_path %>

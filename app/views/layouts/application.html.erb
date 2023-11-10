@@ -11,6 +11,21 @@
   </head>
 
   <body class="<%= params[:action] %>">
+    <header>
+      <div>
+        <% if user_signed_in? %>
+          <strong><%= t('layouts.application.sign_in_as', name: current_user.email) %></strong>
+          <%= link_to t('views.common.title_index', name: i18n_pluralize(Book.model_name.human)), root_path %> |
+          <%= link_to t('devise.registrations.edit.title', resource: User.model_name.human), edit_user_registration_path %> |
+          <%= link_to t('layouts.application.list', name: User.model_name.human), users_path %> |
+          <%= link_to t('layouts.application.sign_out'), destroy_user_session_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to t('devise.shared.links.sign_up'), new_user_registration_path %> |
+          <%= link_to t('devise.shared.links.sign_in'), new_user_session_path %>
+        <% end %>
+      </div>
+      <br>
+    </header>
     <%= yield %>
   </body>
 </html>
