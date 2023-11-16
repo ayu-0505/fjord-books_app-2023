@@ -7,5 +7,5 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :avatar, content_type: { in: ['image/png', 'image/jpeg', 'image/gif'], message: 'はpng, jpg, jpeg, gif のいずれかの形式にして下さい。' }
+  validates :avatar, content_type: { in: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'], message: 'はpng, jpg, jpeg, gif のいずれかの形式にして下さい。' }
 end
