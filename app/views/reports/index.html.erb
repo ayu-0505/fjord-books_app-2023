@@ -6,9 +6,9 @@
   <% @reports.each do |report| %>
     <%= render report %>
     <p>
-      <%= link_to "Show this report", report %>
+      <%= link_to "Show this report", user_report_path(report.user, report) %>
     </p>
   <% end %>
 </div>
+<%= link_to "New report", new_user_report_path %>
 
-<%= link_to "New report", new_report_path %>

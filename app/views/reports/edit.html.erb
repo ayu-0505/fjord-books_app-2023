@@ -1,10 +1,10 @@
 <h1>Editing report</h1>
 
-<%= render "form", report: @report %>
+<%= render partial: "form", locals: {report: @report, user: @user} %>
 
 <br>
 
 <div>
-  <%= link_to "Show this report", @report %> |
-  <%= link_to "Back to reports", reports_path %>
+  <%= link_to "Show this report", user_report_path(@report) %> |
+  <%= link_to "Back to reports", user_reports_path %>
 </div>
