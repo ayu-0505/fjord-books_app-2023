@@ -1,12 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
 <%= render @report %>
 
 <div>
   <%  if @report.user == current_user %>
-  <%= link_to "Edit this report", edit_user_report_path(@report.user, @report) %> |
+  <%= link_to t('views.common.edit', name: Report.model_name.human), edit_user_report_path(@report.user, @report) %> |
   <% end %>
-  <%= link_to "Back to reports", reports_path %>
+  <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
 
-  <%= button_to "Destroy this report", user_report_path(@report.user, @report), method: :delete  if @report.user == current_user %>
+  <%= button_to t('views.common.destroy', name: Report.model_name.human), user_report_path(@report.user, @report), method: :delete  if @report.user == current_user %>
 </div>

@@ -1,4 +1,4 @@
-<h1>Reports</h1>
+<h1><%= t('views.common.title_index', name: Report.model_name.human) %></h1>
 
 <div id="reports">
   <% @reports.each do |report| %>
@@ -8,4 +8,6 @@
   <% end %>
 </div>
 
-<%= link_to "New report", new_user_report_path(current_user) %>
+<%= paginate @reports %>
+
+<%= link_to t('views.common.new', name: Report.model_name.human), new_user_report_path(current_user) %>

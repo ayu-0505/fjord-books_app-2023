@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
 
   # GET users/{user_id}/reports or /reports.json
   def index
-    @reports = Report.order(created_at: 'DESC').includes(:user).all
+    @reports = Report.order(created_at: 'DESC').includes(:user).all.page(params[:page])
   end
 
   # GET users/{user_id}/reports/1 or /reports/1.json
@@ -27,7 +27,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to user_report_url(@report.user, @report), notice: 'Report was successfully created.' }
+        format.html { redirect_to user_report_url(@report.user, @report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to user_report_url(@report.user, @report), notice: 'Report was successfully updated.' }
+        format.html { redirect_to user_report_url(@report.user, @report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class ReportsController < ApplicationController
     @report.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_reports_url(@user), notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) }
       format.json { head :no_content }
     end
   end
