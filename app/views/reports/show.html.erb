@@ -3,8 +3,10 @@
 <%= render @report %>
 
 <div>
+  <%  if @report.user == current_user %>
   <%= link_to "Edit this report", edit_user_report_path(@report.user, @report) %> |
-  <%= link_to "Back to reports", user_reports_path %>
+  <% end %>
+  <%= link_to "Back to reports", reports_path %>
 
-  <%= button_to "Destroy this report", user_report_path(@report.user, @report), method: :delete %>
+  <%= button_to "Destroy this report", user_report_path(@report.user, @report), method: :delete  if @report.user == current_user %>
 </div>
