@@ -1,10 +1,10 @@
 <h1>Editing report</h1>
 
-<%= render partial: "form", locals: {report: @report, user: @user} %>
+<%= render "form", @report %>
 
 <br>
 
 <div>
-  <%= link_to t('views.common.show', name: Report.model_name.human), user_report_path(@report) %> |
+  <%= link_to t('views.common.show', name: Report.model_name.human), report_path(@report) %> |
   <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
 </div>

@@ -4,30 +4,33 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
   before_action :correct_user, only: %i[edit create update destroy]
 
-  # GET users/{user_id}/reports or /reports.json
+  # GET /reports or /reports.json
   def index
     @reports = Report.order(created_at: 'DESC').includes(:user).all.page(params[:page])
   end
 
-  # GET users/{user_id}/reports/1 or /reports/1.json
-  def show; end
+  # GET /reports/1 or /reports/1.json
+  def show
+    @comments = Comment.order(:created_at).where(commentable_type: :report, commentable_id: @report.id)
+    @comment = Comment.new
+  end
 
-  # GET users/{user_id}/reports/new
+  # GET /reports/new
   def new
     @user = current_user
     @report = Report.new
   end
 
-  # GET users/{user_id}/reports/1/edit
+  # GET /reports/1/edit
   def edit; end
 
-  # POST users/{user_id}/reports or users/{user_id}/reports.json
+  # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
 
     respond_to do |format|
       if @report.save
-        format.html { redirect_to user_report_url(@report.user, @report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
+        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,11 +39,11 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT users/{user_id}/reports/1 or users/{user_id}/reports/1.json
+  # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to user_report_url(@report.user, @report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
+        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit, status: :unprocessable_entity }

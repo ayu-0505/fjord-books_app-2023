@@ -3,11 +3,11 @@
 <div id="reports">
   <% @reports.each do |report| %>
     <p>
-      <%= link_to report.title, user_report_path(report.user, report) %>
+      <%= link_to report.title, report_path(report) %>
     </p>
   <% end %>
 </div>
 
 <%= paginate @reports %>
 
-<%= link_to t('views.common.new', name: Report.model_name.human), new_user_report_path(current_user) %>
+<%= link_to t('views.common.new', name: Report.model_name.human), new_report_path %>

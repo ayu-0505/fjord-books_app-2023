@@ -1,0 +1,17 @@
+<%= comments.each do |comment| %>
+<p>
+  <strong><%= User.human_attribute_name(:name) %>:</strong>
+  <%= comment.user.name || coment.user.email %>
+</p>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+  <%= comment.created_at %>
+</p>
+
+<p>
+  <strong><%= Comment.human_attribute_name(:comment_content) %>:</strong>
+  <%= comment.comment_content %>
+</p>
+
+<% end %>
