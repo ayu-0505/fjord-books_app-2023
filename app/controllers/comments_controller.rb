@@ -5,14 +5,14 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build(comment_params)
     @comment.user = current_user
     @comment.save
-    redirect_to [@commentable], notice: 'Your comment was successfully posted.'
+    redirect_to [@commentable], notice: t('controllers.common.notice_create', name: Comment.model_name.human)
   end
 
   def destroy
     @comment = @commentable.comments.find(params[:id])
     if @comment.user == current_user
       @comment.destroy
-      redirect_to [@commentable], notice: 'Comment was successfully destroyed.'
+      redirect_to [@commentable], notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
     else
       render @commentable
     end
