@@ -1,0 +1,20 @@
+<h3>Comments</h3>
+<% commentable.comments.each do |comment| %>
+  <p>
+    <%= User.human_attribute_name(:name) %>:
+    <%= comment.user.name || coment.user.email %>
+  </p>
+  
+  <p>
+    <%= Comment.human_attribute_name(:created_at) %>:
+    <%= comment.created_at %>
+  </p>
+  
+  <p>
+    <%= Comment.human_attribute_name(:comment_content) %>:
+    <%= comment.comment_content %>
+  </p>
+  <p>
+    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), [commentable, comment], method: :delete if comment.user == current_user %>
+  </p>
+<% end %>

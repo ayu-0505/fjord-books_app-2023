@@ -1,7 +1,7 @@
 <h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
 <%= render @report %>
-<%= render partial: 'comments/comment', locals: {comments: @comments} unless @comments.empty? %>
-<%= render partial: 'comments/form', locals: {commentable: @report, comment: @comment} %>
+<%= render partial: 'comments/comments', locals: {commentable: @report} %>
+<%= render partial: 'comments/form', locals: {commentable: @report} %>
 <div>
   <%  if @report.user == current_user %>
   <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path( @report) %> |
