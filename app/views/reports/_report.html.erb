@@ -2,7 +2,7 @@
 
   <p>
     <strong><%= User.human_attribute_name(:name) %>:</strong>
-    <%= report.user.name %>
+    <%= report.user.nil? ? "退会済みユーザー" : report.user.name %>
   </p>
 
   <p>

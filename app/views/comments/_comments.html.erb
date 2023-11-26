@@ -1,8 +1,12 @@
-<h3>Comments</h3>
+<h3><%= Comment.model_name.human %></h3>
 <% commentable.comments.each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
-    <%= comment.user.name || coment.user.email %>
+    <% if comment.user.nil? %>
+      退会済みユーザー
+    <% else %>
+      <%= comment.user.name.empty? ? comment.user.email : comment.user.name %>
+    <% end %>
   </p>
   
   <p>
