@@ -4,6 +4,12 @@
 </div>
 
 <div class="field">
+  <%= f.label :avatar %><br />
+  <%= f.file_field :avatar, accept: '.jpeg, .jpg, .gif, .png' %>
+  <div><%= image_tag resource.avatar.variant(:thumb) if resource.avatar.variable? %></div>
+</div>
+
+<div class="field">
   <%= f.label :postal_code %><br />
   <%= f.text_field :postal_code %>
 </div>
