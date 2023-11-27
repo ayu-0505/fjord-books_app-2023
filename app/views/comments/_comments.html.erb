@@ -2,16 +2,12 @@
 <% commentable.comments.each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
-    <% if comment.user.nil? %>
-      退会済みユーザー
-    <% else %>
-      <%= comment.user.name.empty? ? comment.user.email : comment.user.name %>
-    <% end %>
+      <%= name_or_email_or_deleted_user(comment) %>
   </p>
   
   <p>
     <%= Comment.human_attribute_name(:created_at) %>:
-    <%= comment.created_at %>
+    <%= l comment.created_at %>
   </p>
   
   <p>
