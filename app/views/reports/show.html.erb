@@ -3,7 +3,7 @@
 <%= render partial: 'comments/comments', locals: {commentable: @report} %>
 <%= render partial: 'comments/form', locals: {commentable: @report} %>
 <div>
-  <%  if @report.user == current_user %>
+  <% if @report.user == current_user %>
   <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path( @report) %> |
   <% end %>
   <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>

@@ -1,15 +1,15 @@
 <h3><%= Comment.model_name.human %></h3>
-<% commentable.comments.each do |comment| %>
+<% commentable.comments.includes(:user).each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
       <%= name_or_email_or_deleted_user(comment) %>
   </p>
-  
+
   <p>
     <%= Comment.human_attribute_name(:created_at) %>:
     <%= l comment.created_at %>
   </p>
-  
+
   <p>
     <%= Comment.human_attribute_name(:comment_content) %>:
     <%= comment.comment_content %>
