@@ -12,7 +12,6 @@ class ReportsController < ApplicationController
   # GET /reports/1 or /reports/1.json
   def show
     @comments = Comment.order(:created_at).preload(:user).where(commentable_type: :report, commentable_id: @report.id)
-    @comment = Comment.new
   end
 
   # GET /reports/new
