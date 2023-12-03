@@ -1,4 +1,5 @@
 <h3><%= Comment.model_name.human %></h3>
+
 <% commentable.comments.includes(:user).each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
@@ -14,7 +15,19 @@
     <%= Comment.human_attribute_name(:content) %>:
     <%= comment.content %>
   </p>
-  <p>
-    <%= button_to t('views.common.destroy', name: Comment.model_name.human), [commentable, comment], method: :delete if comment.user == current_user %>
-  </p>
+
+  <% if comment.user == current_user %>
+    <p><%= button_to t('views.common.destroy', name: Comment.model_name.human), [commentable, comment], method: :delete %></p>
+  <% end %>
+<% end %>
+
+<%= form_with(model:[commentable, Comment.new]) do |form| %>
+  <div>
+    <%= form.label :content, style: "display: block" %>
+    <%= form.text_area :content, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
