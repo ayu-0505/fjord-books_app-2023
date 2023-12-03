@@ -2,7 +2,7 @@
 <% commentable.comments.includes(:user).each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
-    <%= name_or_email_or_deleted_user(comment) %>
+    <%= change_display_name(comment) %>
   </p>
 
   <p>

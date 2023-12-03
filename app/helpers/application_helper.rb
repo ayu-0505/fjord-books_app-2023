@@ -15,9 +15,9 @@ module ApplicationHelper
     I18n.locale == :ja ? "#{count}件の#{t('views.common.error')}" : pluralize(count, t('views.common.error'))
   end
 
-  def name_or_email_or_deleted_user(object)
-    return '退会済みユーザー' if object.user.nil?
+  def change_display_name(record)
+    return t('views.common.deleted_user') if record.user.nil?
 
-    object.user.name.empty? ? object.user.email : object.user.name
+    record.user.name.presence || record.user.email
   end
 end
