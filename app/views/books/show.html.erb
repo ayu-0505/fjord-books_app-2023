@@ -2,8 +2,8 @@
 
 <div class="show-item">
   <%= render @book %>
-  <%= render partial: 'comments/comments', locals: {commentable: @book} %>
-  <%= render partial: 'comments/form', locals: {commentable: @book} %>
+  <%= render 'comments/comments', commentable: @book %>
+  <%= render 'comments/form', commentable: @book %>
 </div>
 
 <nav class="page-nav">

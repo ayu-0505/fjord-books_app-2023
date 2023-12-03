@@ -1,12 +1,12 @@
 <h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
 <%= render @report %>
-<%= render partial: 'comments/comments', locals: {commentable: @report} %>
-<%= render partial: 'comments/form', locals: {commentable: @report} %>
+<%= render 'comments/comments', commentable: @report %>
+<%= render 'comments/form', commentable: @report %>
 <div>
   <% if @report.user == current_user %>
-  <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path( @report) %> |
+    <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path( @report) %> |
   <% end %>
   <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
 
-  <%= button_to t('views.common.destroy', name: Report.model_name.human), report_path(@report), method: :delete  if @report.user == current_user %>
+  <%= button_to t('views.common.destroy', name: Report.model_name.human), report_path(@report), method: :delete if @report.user == current_user %>
 </div>
