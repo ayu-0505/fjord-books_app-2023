@@ -11,8 +11,8 @@
   </p>
 
   <p>
-    <%= Comment.human_attribute_name(:comment_content) %>:
-    <%= comment.comment_content %>
+    <%= Comment.human_attribute_name(:content) %>:
+    <%= comment.content %>
   </p>
   <p>
     <%= button_to t('views.common.destroy', name: Comment.model_name.human), [commentable, comment], method: :delete if comment.user == current_user %>
