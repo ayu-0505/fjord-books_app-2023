@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report_of_current_user, only: %i[edit update destroy]
+  before_action :set_current_user_report, only: %i[edit update destroy]
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.order(created_at: 'DESC').page(params[:page])
+    @reports = Report.order({ created_at: 'DESC' }, :id).page(params[:page])
   end
 
   # GET /reports/1 or /reports/1.json
@@ -49,7 +49,7 @@ class ReportsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_report_of_current_user
+  def set_current_user_report
     @report = current_user.reports.find(params[:id])
   end
 

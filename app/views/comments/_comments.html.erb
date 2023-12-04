@@ -1,6 +1,6 @@
 <h3><%= Comment.model_name.human %></h3>
 
-<% commentable.comments.includes(:user).each do |comment| %>
+<% commentable.comments.order(:created_at, :id).includes(:user).each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
     <%= change_display_name(comment) %>
