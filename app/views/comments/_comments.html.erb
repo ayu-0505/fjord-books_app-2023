@@ -3,7 +3,7 @@
 <% commentable.comments.order(:created_at, :id).includes(:user).each do |comment| %>
   <p>
     <%= User.human_attribute_name(:name) %>:
-    <%= change_display_name(comment) %>
+    <%= switch_user_name(comment) %>
   </p>
 
   <p>

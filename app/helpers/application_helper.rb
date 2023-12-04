@@ -15,7 +15,7 @@ module ApplicationHelper
     I18n.locale == :ja ? "#{count}件の#{t('views.common.error')}" : pluralize(count, t('views.common.error'))
   end
 
-  def change_display_name(record)
+  def switch_user_name(record)
     return t('views.common.deleted_user') if record.user.nil?
 
     record.user.name.presence || record.user.email
