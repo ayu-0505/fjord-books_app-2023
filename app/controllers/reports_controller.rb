@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.order({ created_at: 'DESC' }, :id).page(params[:page])
+    @reports = Report.order(id: :desc).page(params[:page])
   end
 
   # GET /reports/1 or /reports/1.json
@@ -23,9 +23,9 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    report = current_user.reports.new(report_params)
-    if report.save
-      redirect_to report_url(report), notice: t('controllers.common.notice_create', name: Report.model_name.human)
+    @report = current_user.reports.new(report_params)
+    if @report.save
+      redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
     end
