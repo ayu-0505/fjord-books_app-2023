@@ -14,4 +14,10 @@ module ApplicationHelper
   def i18n_error_count(count)
     I18n.locale == :ja ? "#{count}件の#{t('views.common.error')}" : pluralize(count, t('views.common.error'))
   end
+
+  def switch_user_name(record)
+    return t('views.common.deleted_user') if record.user.nil?
+
+    record.user.name.presence || record.user.email
+  end
 end

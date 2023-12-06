@@ -1,0 +1,10 @@
+<h1><%= t('views.common.title_edit', name: Report.model_name.human) %></h1>
+
+<%= render "form", report: @report %>
+
+<br>
+
+<div>
+  <%= link_to t('views.common.show', name: Report.model_name.human), report_path(@report) %> |
+  <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
+</div>

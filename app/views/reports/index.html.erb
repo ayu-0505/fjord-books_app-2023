@@ -1,0 +1,13 @@
+<h1><%= t('views.common.title_index', name: Report.model_name.human) %></h1>
+
+<div id="reports">
+  <% @reports.each do |report| %>
+    <p>
+      <%= link_to report.title, report_path(report) %>
+    </p>
+  <% end %>
+</div>
+
+<%= paginate @reports %>
+
+<%= link_to t('views.common.new', name: Report.model_name.human), new_report_path %>
