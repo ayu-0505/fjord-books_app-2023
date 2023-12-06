@@ -1,25 +1,29 @@
 <h3><%= Comment.model_name.human %></h3>
 
 <% commentable.comments.order(:id).includes(:user).each do |comment| %>
-  <p>
-    <%= User.human_attribute_name(:name) %>:
-    <%= switch_user_name(comment) %>
-  </p>
-
-  <p>
-    <%= Comment.human_attribute_name(:created_at) %>:
-    <%= l comment.created_at %>
-  </p>
-
-  <p>
-    <%= Comment.human_attribute_name(:content) %>:
-    <%= comment.content %>
-  </p>
-
-  <% if comment.user == current_user %>
-    <p><%= button_to t('views.common.destroy', name: Comment.model_name.human), [commentable, comment], method: :delete %></p>
-  <% end %>
+  <div>
+    <p>
+      <%= User.human_attribute_name(:name) %>:
+      <%= switch_user_name(comment) %>
+    </p>
+  
+    <p>
+      <%= Comment.human_attribute_name(:created_at) %>:
+      <%= l comment.created_at %>
+    </p>
+  
+    <p>
+      <%= Comment.human_attribute_name(:content) %>:
+      <%= comment.content %>
+    </p>
+  
+    <% if comment.user == current_user %>
+      <p><%= button_to t('views.common.destroy', name: Comment.model_name.human), [commentable, comment], method: :delete %></p>
+    <% end %>
+    <hr color="#e6e6fa">
+  </div>
 <% end %>
+
 
 <%= form_with(model:[commentable, Comment.new]) do |form| %>
   <div>
