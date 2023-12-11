@@ -1,4 +1,4 @@
-<div  class="container">
+<div>
   <% if (mentions = report.mentioned_reports.order(:id).includes(:mentioned_reports).presence) %>
     <h3><%= t('.it_mentioned_from') %></h3>
       <ul>
@@ -6,7 +6,7 @@
           <li>
             <%= link_to meniton_report.title, meniton_report %>
           </li>
-        <% end%> 
+        <% end %>
       </ul>
   <% end %>
 </div>
