@@ -1,12 +1,12 @@
 <div  class="container">
   <% if (mentions = report.mentioned_reports.order(:id).includes(:mentioned_reports).presence) %>
-    <h3>この日報は以下の日報から言及されています。</h3>
+    <h3><%= t('.it_mentioned_from') %></h3>
       <ul>
         <% mentions.each do |meniton_report| %>
           <li>
             <%= link_to meniton_report.title, meniton_report %>
           </li>
-        <% end%>
+        <% end%> 
       </ul>
   <% end %>
 </div>
