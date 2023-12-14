@@ -79,7 +79,7 @@ class ReportsController < ApplicationController
   def create_mentions(id_list)
     id_list.each do |id|
       mention = @report.mentioning_relations.build(mentioned_id: id)
-      mention.save
+      mention.save unless id == @report.id
     end
   end
 
