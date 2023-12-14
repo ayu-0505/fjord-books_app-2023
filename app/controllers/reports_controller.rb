@@ -39,8 +39,10 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    @report.destroy
-    update_mentions(mentioning_id_list)
+    ActiveRecord::Base.transaction do
+      delete_mentions(mentioning_id_list)
+      @report.destroy
+    end
 
     redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   end
