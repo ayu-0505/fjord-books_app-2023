@@ -1,11 +1,14 @@
 <div>
   <% if (mentions = report.mentioned_reports.order(:id).includes(:mentioned_reports).presence) %>
+  <% return if mentions.length == 1 && mentions[0] == report %>
     <h3><%= t('.it_mentioned_from') %></h3>
       <ul>
         <% mentions.each do |meniton_report| %>
-          <li>
-            <%= link_to meniton_report.title, meniton_report %>
-          </li>
+          <% unless meniton_report == report %>
+            <li>
+              <%= link_to meniton_report.title, meniton_report %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
   <% end %>
