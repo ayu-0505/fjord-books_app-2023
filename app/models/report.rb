@@ -42,7 +42,12 @@ class Report < ApplicationRecord
     paths = URI.extract(content, %w[http https])
     return [] if paths == []
 
-    paths.select { |path| path.match?((('127.0.0.1:3000' || 'localhost:3000') && %r{reports/(\d+)})) }.map do |path|
+    report_paths = paths.select do |path|
+      parsed_path = URI.parse(path)
+      ['127.0.0.1', 'localhost'].include?(parsed_path.host) && path.match?(%r{reports/(\d+)})
+    end
+
+    report_paths.map do |path|
       match = path.match(%r{reports/(\d+)})
       match[1].to_i
     end.uniq
