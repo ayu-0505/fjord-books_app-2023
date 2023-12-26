@@ -40,7 +40,7 @@ class Report < ApplicationRecord
 
   def mentioning_id_list
     paths = URI.extract(content, %w[http https])
-    return [] if paths == []
+    return [] if paths.blank?
 
     report_paths = paths.select do |path|
       parsed_path = URI.parse(path)
@@ -53,16 +53,16 @@ class Report < ApplicationRecord
     end.uniq
   end
 
-  def create_mentions(id_list)
-    id_list.each do |id|
-      mention = mentioning_relations.build(mentioned_id: id)
-      mention.save unless id == self.id
+  def create_mentions(mentioned_ids)
+    mentioned_ids.each do |mentioned_id|
+      mention = mentioning_relations.build(mentioned_id:)
+      mention.save unless mentioned_id == id
     end
   end
 
-  def delete_mentions(id_list)
-    id_list.each do |id|
-      mention = mentioning_relations.find_by(mentioned_id: id)
+  def delete_mentions(mentioned_ids)
+    mentioned_ids.each do |mentioned_id|
+      mention = mentioning_relations.find_by(mentioned_id:)
       mention.delete
     end
   end
