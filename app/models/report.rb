@@ -21,6 +21,10 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  after_save :update_mentions
+  after_update :update_mentions
+  after_destroy :update_mentions
+
   def editable?(target_user)
     user == target_user
   end
@@ -29,16 +33,18 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def update_mentions(id_list)
-    old_id_list = mentioning_relations.map(&:mentioned_id)
-    list_to_create = id_list.difference(old_id_list)
-    list_to_delete = old_id_list.difference(id_list)
+  private
 
-    create_mentions(list_to_create) unless list_to_create.empty?
-    delete_mentions(list_to_delete) unless list_to_delete.empty?
+  def update_mentions
+    old_mentioned_ids = mentioning_relations.map(&:mentioned_id)
+    mentioned_ids_to_create = mentioned_ids_list.difference(old_mentioned_ids)
+    mentioned_ids_to_delete = old_mentioned_ids.difference(mentioned_ids_list)
+
+    create_mentions(mentioned_ids_to_create) unless mentioned_ids_to_create.empty?
+    delete_mentions(mentioned_ids_to_delete) unless mentioned_ids_to_delete.empty?
   end
 
-  def mentioning_id_list
+  def mentioned_ids_list
     paths = URI.extract(content, %w[http https])
     return [] if paths.blank?
 
@@ -55,15 +61,20 @@ class Report < ApplicationRecord
 
   def create_mentions(mentioned_ids)
     mentioned_ids.each do |mentioned_id|
-      mention = mentioning_relations.build(mentioned_id:)
-      mention.save unless mentioned_id == id
+      next if mentioned_id == id
+      next unless Report.exists?(id: mentioned_id)
+
+      mention = mentioning_relations.new(mentioned_id:)
+      mention.save!
     end
   end
 
   def delete_mentions(mentioned_ids)
     mentioned_ids.each do |mentioned_id|
       mention = mentioning_relations.find_by(mentioned_id:)
-      mention.delete
+      next if mention.nil?
+
+      mention.destroy!
     end
   end
 end
