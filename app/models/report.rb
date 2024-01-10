@@ -22,8 +22,6 @@ class Report < ApplicationRecord
   validates :content, presence: true
 
   after_save :update_mentions
-  after_update :update_mentions
-  after_destroy :update_mentions
 
   def editable?(target_user)
     user == target_user
@@ -37,14 +35,14 @@ class Report < ApplicationRecord
 
   def update_mentions
     old_mentioned_ids = mentioning_relations.map(&:mentioned_id)
-    mentioned_ids_to_create = mentioned_ids_list.difference(old_mentioned_ids)
-    mentioned_ids_to_delete = old_mentioned_ids.difference(mentioned_ids_list)
+    mentioned_ids_to_create = mentioned_ids_in_content - old_mentioned_ids
+    mentioned_ids_to_delete = old_mentioned_ids - mentioned_ids_in_content
 
-    create_mentions(mentioned_ids_to_create) unless mentioned_ids_to_create.empty?
-    delete_mentions(mentioned_ids_to_delete) unless mentioned_ids_to_delete.empty?
+    create_mentions(mentioned_ids_to_create) if mentioned_ids_to_create.present?
+    delete_mentions(mentioned_ids_to_delete) if mentioned_ids_to_delete.present?
   end
 
-  def mentioned_ids_list
+  def mentioned_ids_in_content
     paths = URI.extract(content, %w[http https])
     return [] if paths.blank?
 
@@ -61,7 +59,6 @@ class Report < ApplicationRecord
 
   def create_mentions(mentioned_ids)
     mentioned_ids.each do |mentioned_id|
-      next if mentioned_id == id
       next unless Report.exists?(id: mentioned_id)
 
       mention = mentioning_relations.new(mentioned_id:)
