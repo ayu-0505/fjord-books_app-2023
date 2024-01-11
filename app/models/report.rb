@@ -34,15 +34,15 @@ class Report < ApplicationRecord
     mentioned_ids_to_create = mentioned_ids_in_content - old_mentioned_ids
     mentioned_ids_to_delete = old_mentioned_ids - mentioned_ids_in_content
 
-    all_success = true
+    success = true
     Report.transaction do
-      all_success &= save
+      success &= save
       create_mentions(mentioned_ids_to_create) if mentioned_ids_to_create.present?
       delete_mentions(mentioned_ids_to_delete) if mentioned_ids_to_delete.present?
 
-      raise ActiveRecord::Rollback unless all_success
+      raise ActiveRecord::Rollback unless success
     end
-    all_success
+    success
   end
 
   private
