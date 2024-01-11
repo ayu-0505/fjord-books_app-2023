@@ -40,7 +40,7 @@ class Report < ApplicationRecord
       create_mentions(mentioned_ids_to_create) if mentioned_ids_to_create.present?
       delete_mentions(mentioned_ids_to_delete) if mentioned_ids_to_delete.present?
 
-      raise ActiveRecord::Rollback unless all_valid
+      raise ActiveRecord::Rollback unless all_success
     end
     all_success
   end
