@@ -37,8 +37,8 @@ class Report < ApplicationRecord
     success = true
     Report.transaction do
       success &= save
-      create_mentions(mentioned_ids_to_create) if mentioned_ids_to_create.present?
-      delete_mentions(mentioned_ids_to_delete) if mentioned_ids_to_delete.present?
+      success &= create_mentions(mentioned_ids_to_create) if mentioned_ids_to_create.present?
+      success &= delete_mentions(mentioned_ids_to_delete) if mentioned_ids_to_delete.present?
 
       raise ActiveRecord::Rollback unless success
     end
@@ -63,20 +63,24 @@ class Report < ApplicationRecord
   end
 
   def create_mentions(mentioned_ids)
+    success = true
     mentioned_ids.each do |mentioned_id|
       next unless Report.exists?(id: mentioned_id)
 
       mention = mentioning_relations.new(mentioned_id:)
-      mention.save!
+      success &= mention.save
     end
+    success
   end
 
   def delete_mentions(mentioned_ids)
+    success = true
     mentioned_ids.each do |mentioned_id|
       mention = mentioning_relations.find_by(mentioned_id:)
       next if mention.nil?
 
-      mention.destroy!
+      success &= mention.destroy
     end
+    success
   end
 end
