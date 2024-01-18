@@ -63,24 +63,14 @@ class Report < ApplicationRecord
   end
 
   def create_mentions(mentioned_ids)
-    success = true
-    mentioned_ids.each do |mentioned_id|
-      next unless Report.exists?(id: mentioned_id)
-
-      mention = mentioning_relations.new(mentioned_id:)
-      success &= mention.save
+    mentioned_ids.delete_if { |mentioned_id| !Report.exists?(id: mentioned_id) }.all? do |mentioned_id|
+      mentioning_relations.create(mentioned_id:)
     end
-    success
   end
 
   def delete_mentions(mentioned_ids)
-    success = true
-    mentioned_ids.each do |mentioned_id|
-      mention = mentioning_relations.find_by(mentioned_id:)
-      next if mention.nil?
-
-      success &= mention.destroy
+    mentioned_ids.all? do |mentioned_id|
+      mentioning_relations.delete_by(mentioned_id:)
     end
-    success
   end
 end
