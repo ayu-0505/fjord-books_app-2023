@@ -1,11 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+alice_report:
+  user_id: 1
+  title: Hello! I'm Alice!
+  content: Nice to meet you!\nThis report is awsome! http://localhost:3000/reports/2
+  created_at: <%=  Time.zone.now.to_date.to_s %>
 
-two:
-  user: two
-  title: MyString
-  content: MyText
+bob_report:
+  user_id: 2
+  title:  Hello! I'm Bob!
+  content: Thank you for looking my report!
+
+carol_report:
+  user_id: 3
+  title:  Hello! I'm Carol!
+  content: I like it!
+
+dave_report:
+  user_id: 4
+  title:  Hello! I'm Dave!
+  content: Good!
+
