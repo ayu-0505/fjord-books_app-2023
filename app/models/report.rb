@@ -63,14 +63,15 @@ class Report < ApplicationRecord
   end
 
   def create_mentions(mentioned_ids)
-    mentioned_ids.delete_if { |mentioned_id| !Report.exists?(id: mentioned_id) }.all? do |mentioned_id|
+    existing_mentioned_ids = Report.where(id: mentioned_ids).pluck(:id)
+    existing_mentioned_ids.all? do |mentioned_id|
       mentioning_relations.create(mentioned_id:)
     end
   end
 
   def delete_mentions(mentioned_ids)
     mentioned_ids.all? do |mentioned_id|
-      mentioning_relations.delete_by(mentioned_id:)
+      mentioning_relations.destroy_by(mentioned_id:)
     end
   end
 end
