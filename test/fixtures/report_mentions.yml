@@ -4,8 +4,6 @@
 # # model remove the "{}" from the fixture names and add the columns immediately
 # # below each fixture, per the syntax in the comments below
 
-one:
-  mention_to: bob_report
-  mention_to_id: 2
-  mentioned_by: alice_report
-  mentioned_by_id: 1
+alice_report_mentions_bob_report:
+  mention_to: alice_report
+  mentioned_by: bob_report

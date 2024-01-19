@@ -1,23 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 alice_report:
-  user_id: 1
-  title: Hello! I'm Alice!
-  content: Nice to meet you!\nThis report is awsome! http://localhost:3000/reports/2
-  created_at: <%=  Time.zone.now.to_date.to_s %>
+  user: alice
+  title: アリスです。
+  content: こんにちは！はじめて日報を書きます。
 
 bob_report:
-  user_id: 2
-  title:  Hello! I'm Bob!
-  content: Thank you for looking my report!
+  user: bob
+  title:  ボブです。
+  content: 緊張しています。
 
 carol_report:
-  user_id: 3
-  title:  Hello! I'm Carol!
-  content: I like it!
+  user: carol
+  title:  キャロルです。
+  content: 見てくれてありがとうございます。
 
 dave_report:
-  user_id: 4
-  title:  Hello! I'm Dave!
-  content: Good!
-
+  user: dave
+  title:  デイブです。
+  content: 最近参加しました。よろしくお願いします。
