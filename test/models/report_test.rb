@@ -23,6 +23,9 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '日報の保存時は既存の言及を全削除し、新規の言及を作成する' do
+    assert_equal 1, @report.active_mentions.size
+    assert @report.active_mentions.find_by(mentioned_by_id: @mentioned_report.id)
+
     new_mentioned_report = reports(:carol_report)
     @report.content =
       "http://localhost:3000/reports/#{new_mentioned_report.id}を見ました。"
