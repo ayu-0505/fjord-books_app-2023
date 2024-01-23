@@ -14,12 +14,12 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text 'ログインしました。'
   end
 
-  test 'visiting the index' do
+  test '日報インデックスへアクセス' do
     visit reports_url
     assert_selector 'h1', exact_text: '日報の一覧'
   end
 
-  test 'should create report' do
+  test '日報の作成' do
     visit reports_url
     assert_selector 'h1', exact_text: '日報の一覧'
     click_on '日報の新規作成'
@@ -34,7 +34,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text 'はじめまして、今日から入会しました。よろしくお願いします。'
   end
 
-  test 'should update Report' do
+  test '日報の編集と更新' do
     visit report_url(@report)
     click_on 'この日報を編集', match: :first
     assert_selector 'h1', exact_text: '日報の編集'
@@ -48,7 +48,7 @@ class ReportsTest < ApplicationSystemTestCase
     assert_text '今日も大変でした。難しいですね。'
   end
 
-  test 'should destroy Report' do
+  test '日報の削除' do
     visit report_url(@report)
     assert_selector 'h1', exact_text: '日報の詳細'
     click_on 'この日報を削除', match: :first
