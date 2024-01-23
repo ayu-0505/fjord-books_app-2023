@@ -18,8 +18,3 @@ carol:
   name: キャロル
   email: carol@example.com
   encrypted_password: password
-
-dave:
-  name: デイブ
-  email: dave@example.com
-  encrypted_password: password
