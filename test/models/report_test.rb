@@ -48,4 +48,12 @@ class ReportTest < ActiveSupport::TestCase
 
     assert_equal 0, @report.active_mentions.size
   end
+
+  test 'mentions only existing reports' do
+    num = reports.size
+    @report.content = "http://localhost:3000/reports/#{@report.id + rand(num..num + 100)}は存在しない日報だ。"
+    @report.save
+
+    assert_equal 0, @report.active_mentions.size
+  end
 end

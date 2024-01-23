@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name_or_email returns user name with user name' do
-    assert_equal 'alice', @user.name_or_email
+    assert_equal 'アリス', @user.name_or_email
   end
 
   test 'name_or_email returns email without user name' do
