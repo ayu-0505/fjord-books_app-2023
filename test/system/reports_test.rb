@@ -51,8 +51,9 @@ class ReportsTest < ApplicationSystemTestCase
   test '日報の削除' do
     visit reports_url
     while has_no_selector?("div#report_#{@report.id}")
-      click_on '次 ›'
       break if has_no_text?('次 ›')
+
+      click_on '次 ›'
     end
     assert_selector "div#report_#{@report.id}"
 
@@ -63,9 +64,10 @@ class ReportsTest < ApplicationSystemTestCase
       assert_text '日報が削除されました。'
     end
 
-    assert_no_selector "div#report_#{@report.id}"
     while has_text?('次 ›')
       assert_no_selector "div#report_#{@report.id}"
+      break if has_no_text?('次 ›')
+
       click_on '次 ›'
     end
   end
