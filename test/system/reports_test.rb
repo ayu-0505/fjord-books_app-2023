@@ -49,10 +49,24 @@ class ReportsTest < ApplicationSystemTestCase
   end
 
   test '日報の削除' do
+    visit reports_url
+    while has_no_selector?("div#report_#{@report.id}")
+      click_on '次 ›'
+      break if has_no_text?('次 ›')
+    end
+    assert_selector "div#report_#{@report.id}"
+
     visit report_url(@report)
     assert_selector 'h1', exact_text: '日報の詳細'
-    click_on 'この日報を削除', match: :first
+    assert_difference 'Report.count', -1 do
+      click_on 'この日報を削除', match: :first
+      assert_text '日報が削除されました。'
+    end
 
-    assert_text '日報が削除されました。'
+    assert_no_selector "div#report_#{@report.id}"
+    while has_text?('次 ›')
+      assert_no_selector "div#report_#{@report.id}"
+      click_on '次 ›'
+    end
   end
 end
