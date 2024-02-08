@@ -51,6 +51,7 @@ class ReportsTest < ApplicationSystemTestCase
   test '日報の削除' do
     visit reports_url
     assert_text 'アリスです。'
+    assert_text 'こんにちは！はじめて日報を書きます。'
 
     visit report_url(@report)
     assert_selector 'h1', exact_text: '日報の詳細'
@@ -60,5 +61,6 @@ class ReportsTest < ApplicationSystemTestCase
     end
 
     assert_no_text 'アリスです。'
+    assert_no_text 'こんにちは！はじめて日報を書きます。'
   end
 end
