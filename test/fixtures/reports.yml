@@ -14,11 +14,3 @@ carol_report:
   user: carol
   title:  キャロルです。
   content: 見てくれてありがとうございます。
-
-<% 100.times do |num| %> 
-report_<%= num %>:
-  id: <%= num %>
-  user: alice
-  title: <%= "title_#{num}" %>
-  content: <%= "content_#{num}" %>
-<% end %>
