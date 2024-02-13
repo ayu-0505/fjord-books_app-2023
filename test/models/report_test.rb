@@ -49,7 +49,7 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '存在しない日報のID番号のURLを言及しても言及は作成されない' do
-    @report.content = "http://localhost:3000/reports/#{Report.last.id + 1}は存在しない日報だ。"
+    @report.content = "http://localhost:3000/reports/#{Report.maximum(:id) + 1}は存在しない日報だ。"
     @report.save!
 
     assert_equal 0, @report.active_mentions.size
